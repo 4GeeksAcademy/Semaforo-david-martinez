@@ -9,7 +9,7 @@ const Home = () => {
 		<div className="text-center">
             
 
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
+			<h1 className="text-center mt-5">Semaforo!</h1>
 			<p>
 				<img src={rigoImage} />
 			</p>
