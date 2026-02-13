@@ -1,37 +1,48 @@
 import React, { useState } from "react";
 
 const TrafficLight = () => {
+    //  Estados definidos correctamente
     const [color, setColor] = useState("red");
     const [purpleVisible, setPurpleVisible] = useState(false);
+
+    /**
+     * Alterna los colores del semáforo.
+     * Incluye lógica para el color púrpura si está activo.
+     */
     const cycleColor = () => {
-        if (color === "red") setColor("green");
-        else if (color === "green") setColor("yellow");
-        else if (color === "yellow") setColor("red");
+        if (color === "red") setColor("yellow");
+        else if (color === "yellow") setColor("green");
+        else if (color === "green") {
+            purpleVisible ? setColor("purple") : setColor("red");
+        } else if (color === "purple") {
+            setColor("red");
+        }
     };
 
     return (
         <div className="container-fluid d-flex flex-column align-items-center mt-5">
-
-            <div className="bg-black" style={{ width: "10px", height: "50px" }}></div>
+            {/*  Poste usando clase CSS en lugar de style inline */}
+            <div className="traffic-pole"></div>
             
             <div className="bg-black p-3 rounded-3 d-flex flex-column gap-3 shadow-lg">
+                {/*  Uso de Template Literals para las clases */}
                 <div 
                     onClick={() => setColor("red")}
-                    className={"light red" + (color === "red" ? " glow" : "")}>
+                    className={`light red ${color === "red" ? "glow" : ""}`}>
                 </div>
                 <div 
                     onClick={() => setColor("yellow")}
-                    className={"light yellow" + (color === "yellow" ? " glow" : "")}>
+                    className={`light yellow ${color === "yellow" ? "glow" : ""}`}>
                 </div>
                 <div 
                     onClick={() => setColor("green")}
-                    className={"light green" + (color === "green" ? " glow" : "")}>
+                    className={`light green ${color === "green" ? "glow" : ""}`}>
                 </div>
                 
                 {purpleVisible && (
                     <div 
                         onClick={() => setColor("purple")}
-                        className={"light purple" + (color === "purple" ? " glow" : "")}>
+                        className={`light purple ${color === "purple" ? "glow" : ""}`}>
                     </div>
                 )}
             </div>
